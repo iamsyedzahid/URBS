@@ -5,14 +5,26 @@
 
 ## 1. Install dependencies
 ```bash
+cd backend
+python -m venv venv
+.\venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
 ## 2. Run the server
+**Backend**
 ```bash
 python app.py
 ```
 Server starts at: **http://localhost:5000**
+
+**Frontend**
+```bash
+cd frontend
+npm install
+npm start
+```
+
 
 ## 3. Default credentials (auto-seeded on first run)
 | Role    | Email              | Password   |
