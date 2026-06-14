@@ -1,0 +1,53 @@
+Issue Type,Summary,Description,Priority,Epic Name,Date Created,Date Resolved,Status
+Epic,Sprint 1: Planning & Proposal,Initial planning and setup,Highest,Sprint 1: Planning & Proposal,23/Feb/2026 12:00 AM,09/Mar/2026 12:00 AM,Done
+Task,Define system scope and MVP boundaries,Define system scope and MVP boundaries,High,Sprint 1: Planning & Proposal,23/Feb/2026 02:16 PM,08/Mar/2026 07:44 AM,Done
+Task,Select and justify technology stack,Select and justify technology stack,Medium,Sprint 1: Planning & Proposal,24/Feb/2026 02:26 PM,02/Mar/2026 07:07 AM,Done
+Task,Identify stakeholders and define actors,Identify stakeholders and define actors,Medium,Sprint 1: Planning & Proposal,25/Feb/2026 03:01 PM,01/Mar/2026 02:31 AM,Done
+Task,Draft and format project proposal document,Draft and format project proposal document,High,Sprint 1: Planning & Proposal,24/Feb/2026 04:37 PM,27/Feb/2026 04:40 AM,Done
+Task,Develop Risk Register,Develop Risk Register with mitigations,High,Sprint 1: Planning & Proposal,25/Feb/2026 10:24 AM,06/Mar/2026 10:36 PM,Done
+Task,Create Gantt Chart,Create Gantt Chart for weeks 6-16,Medium,Sprint 1: Planning & Proposal,24/Feb/2026 09:48 AM,27/Feb/2026 07:06 PM,Done
+Task,Configure Scrum board and GitHub,Configure Trello Scrum board and GitHub repository,High,Sprint 1: Planning & Proposal,23/Feb/2026 04:34 PM,04/Mar/2026 02:00 AM,Done
+Epic,Sprint 2: Requirements & SRS,Requirements gathering and SRS document,Highest,Sprint 2: Requirements & SRS,09/Mar/2026 12:00 AM,23/Mar/2026 12:00 AM,Done
+Task,Conduct requirements elicitation,Conduct requirements elicitation via interviews and surveys,High,Sprint 2: Requirements & SRS,10/Mar/2026 02:31 PM,12/Mar/2026 04:00 AM,Done
+Task,Write Functional Requirements,Write Functional Requirements (FR-01 to FR-22),High,Sprint 2: Requirements & SRS,11/Mar/2026 01:40 PM,17/Mar/2026 01:24 AM,Done
+Task,Write Non-Functional Requirements,Write Non-Functional Requirements (NFR-01 to NFR-07),High,Sprint 2: Requirements & SRS,11/Mar/2026 01:01 PM,16/Mar/2026 01:29 AM,Done
+Task,Produce IEEE 830 SRS document,Produce IEEE 830 SRS document,Highest,Sprint 2: Requirements & SRS,09/Mar/2026 09:44 AM,13/Mar/2026 09:19 PM,Done
+Task,Draw Use Case Diagram,Draw Use Case Diagram with actors and use cases,High,Sprint 2: Requirements & SRS,11/Mar/2026 11:54 AM,13/Mar/2026 09:48 PM,Done
+Task,Draft initial Entity-Relationship (ER) Diagram,Draft initial Entity-Relationship (ER) Diagram,High,Sprint 2: Requirements & SRS,10/Mar/2026 10:25 AM,14/Mar/2026 01:28 AM,Done
+Epic,Sprint 3: System Design,System architecture and design diagrams,Highest,Sprint 3: System Design,23/Mar/2026 12:00 AM,06/Apr/2026 12:00 AM,Done
+Task,Finalise DB schema,Finalise DB schema with full constraints and indexes,High,Sprint 3: System Design,25/Mar/2026 03:59 PM,28/Mar/2026 03:38 AM,Done
+Task,Design REST API specification,Design REST API specification with endpoints and payloads,High,Sprint 3: System Design,25/Mar/2026 09:44 AM,04/Apr/2026 09:46 PM,Done
+Task,Create System Architecture Diagram,Create System Architecture / Deployment Diagram,High,Sprint 3: System Design,23/Mar/2026 09:12 AM,01/Apr/2026 06:28 PM,Done
+Task,Draw Class Diagram,Draw Class Diagram for User Room and Booking entities,Medium,Sprint 3: System Design,23/Mar/2026 01:43 PM,05/Apr/2026 03:38 AM,Done
+Task,Draw Sequence Diagram,Draw Sequence Diagram for booking request flow,Medium,Sprint 3: System Design,23/Mar/2026 01:00 PM,31/Mar/2026 12:25 AM,Done
+Task,Draw Activity Diagram,Draw Activity Diagram for full reservation workflow,Medium,Sprint 3: System Design,23/Mar/2026 05:18 PM,27/Mar/2026 11:02 AM,Done
+Task,Produce UI Wireframes,Produce UI Wireframes for all screens,High,Sprint 3: System Design,24/Mar/2026 05:43 PM,03/Apr/2026 04:07 AM,Done
+Epic,Sprint 4: Full-Stack Development,Implementation of frontend and backend,Highest,Sprint 4: Full-Stack Development,06/Apr/2026 12:00 AM,25/Apr/2026 12:00 AM,Done
+Story,Backend: Initialise Flask project,Initialise Flask project configure SQLAlchemy SQLite dev DB and CORS,High,Sprint 4: Full-Stack Development,08/Apr/2026 03:08 PM,24/Apr/2026 12:16 AM,Done
+Story,Backend: Implement User auth,Implement User model and auth endpoints with JWT,High,Sprint 4: Full-Stack Development,07/Apr/2026 03:34 PM,09/Apr/2026 04:42 AM,Done
+Story,Backend: Implement Room CRUD,Implement Room model and rooms CRUD endpoints,High,Sprint 4: Full-Stack Development,06/Apr/2026 12:04 PM,09/Apr/2026 09:51 PM,Done
+Story,Backend: Implement Booking POST,Implement Booking model and bookings POST endpoint,Highest,Sprint 4: Full-Stack Development,07/Apr/2026 09:35 AM,22/Apr/2026 09:43 PM,Done
+Story,Backend: Implement Booking GET/DELETE,Implement bookings GET and DELETE endpoints,High,Sprint 4: Full-Stack Development,08/Apr/2026 09:45 AM,12/Apr/2026 08:51 PM,Done
+Story,Backend: Implement Admin bookings,Implement admin bookings endpoints,High,Sprint 4: Full-Stack Development,07/Apr/2026 11:42 AM,14/Apr/2026 02:20 AM,Done
+Story,Backend: Write unit tests,Write unit tests for core logic,Medium,Sprint 4: Full-Stack Development,08/Apr/2026 12:01 PM,15/Apr/2026 01:17 AM,Done
+Story,Frontend: Bootstrap React app,Bootstrap React app with Tailwind CSS,High,Sprint 4: Full-Stack Development,07/Apr/2026 03:57 PM,09/Apr/2026 05:47 AM,Done
+Story,Frontend: Implement AuthContext,Implement AuthContext for JWT storage,High,Sprint 4: Full-Stack Development,06/Apr/2026 11:05 AM,24/Apr/2026 03:00 AM,Done
+Story,Frontend: Build Login/Register screen,Build Login and Register screens,High,Sprint 4: Full-Stack Development,08/Apr/2026 03:06 PM,24/Apr/2026 06:42 AM,Done
+Story,Frontend: Build Room Search screen,Build Room Search screen with filters,High,Sprint 4: Full-Stack Development,06/Apr/2026 03:33 PM,13/Apr/2026 05:19 AM,Done
+Story,Frontend: Build Booking Form screen,Build Booking Form screen with conflict warning,Highest,Sprint 4: Full-Stack Development,08/Apr/2026 05:31 PM,23/Apr/2026 07:49 AM,Done
+Story,Frontend: Build Booking History screen,Build Booking History screen with cancel action,High,Sprint 4: Full-Stack Development,07/Apr/2026 01:58 PM,20/Apr/2026 02:11 AM,Done
+Story,Frontend: Build Admin Panel,Build Admin Panel with room inventory and approval queue,High,Sprint 4: Full-Stack Development,07/Apr/2026 04:50 PM,14/Apr/2026 05:57 AM,Done
+Task,Integration: Connect API calls,Connect all React API calls to live Flask endpoints,Highest,Sprint 4: Full-Stack Development,08/Apr/2026 10:35 AM,23/Apr/2026 02:01 AM,Done
+Task,Integration: End-to-end test,Run end-to-end testing flow,High,Sprint 4: Full-Stack Development,08/Apr/2026 12:46 PM,24/Apr/2026 03:18 AM,Done
+Bug,Integration: Bug-fix pass,Fix backend edge cases and frontend responsive issues,High,Sprint 4: Full-Stack Development,06/Apr/2026 10:29 AM,15/Apr/2026 02:39 AM,Done
+Task,Deploy alpha build,Deploy alpha build locally and conduct feedback sessions,Medium,Sprint 4: Full-Stack Development,07/Apr/2026 04:21 PM,13/Apr/2026 03:44 AM,Done
+Epic,Sprint 5: QA Delivery & PM,Testing and final project submission,Highest,Sprint 5: QA Delivery & PM,25/Apr/2026 12:00 AM,08/May/2026 12:00 AM,Done
+Task,Incorporate alpha feedback,Incorporate alpha feedback and prioritized change log,High,Sprint 5: QA Delivery & PM,26/Apr/2026 11:52 AM,30/Apr/2026 05:37 AM,Done
+Task,Integration testing,Perform integration testing on booking and approval modules,High,Sprint 5: QA Delivery & PM,25/Apr/2026 11:36 AM,05/May/2026 03:45 AM,Done
+Task,System testing,Perform system testing for full reservation workflow,High,Sprint 5: QA Delivery & PM,27/Apr/2026 05:41 PM,07/May/2026 11:23 AM,Done
+Task,User Acceptance Testing (UAT),Perform UAT with real users,Highest,Sprint 5: QA Delivery & PM,25/Apr/2026 01:33 PM,06/May/2026 01:54 AM,Done
+Task,Write code documentation,Write code documentation and API reference,Medium,Sprint 5: QA Delivery & PM,27/Apr/2026 05:08 PM,04/May/2026 09:10 AM,Done
+Task,Write final project report,Write final project report including strengths and challenges,High,Sprint 5: QA Delivery & PM,27/Apr/2026 11:07 AM,03/May/2026 02:48 AM,Done
+Task,Produce presentation slides,Produce presentation slides for final demo,High,Sprint 5: QA Delivery & PM,25/Apr/2026 04:22 PM,01/May/2026 05:56 AM,Done
+Task,Compile PM Evidence,Compile Trello screenshots sprint retrospectives and GitHub history,Medium,Sprint 5: QA Delivery & PM,25/Apr/2026 02:00 PM,05/May/2026 11:31 PM,Done
+Task,Project evaluation report,Draft the project evaluation and retrospective report,Medium,Sprint 5: QA Delivery & PM,26/Apr/2026 02:28 PM,02/May/2026 12:59 AM,Done

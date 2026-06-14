@@ -1,0 +1,67 @@
+flowchart LR
+    %% ── Actors ──
+    Student((Student))
+    Faculty((Faculty))
+    Admin((Admin))
+    Sys((System))
+
+    %% ── System Boundary ──
+    subgraph URBS [University Room Booking System]
+        direction TB
+
+        %% Shared user use cases
+        UC1([Register and login])
+        UC2([Search room availability])
+        UC3([Submit booking request])
+        UC4([View booking history])
+        UC5([Cancel booking])
+
+        %% Admin-only use cases
+        UC6([Manage room inventory])
+        UC7([Approve / reject requests])
+        UC8([Monitor room utilization])
+
+        %% System-automated use cases
+        UC9([Enforce conflict check])
+        UC10([Notify user of status])
+        UC12([Store reservation record])
+
+        %% Extension use case (Faculty-specific)
+        UC11([Priority room access])
+
+        %% ── include relationships ──
+        UC3 -->|"«include»"| UC9
+        UC5 -->|"«include»"| UC9
+        UC7 -->|"«include»"| UC10
+        UC7 -->|"«include»"| UC12
+
+        %% ── extend relationships ──
+        UC11 -.->|"«extend»"| UC3
+        UC7 -.->|"«extend»"| UC4
+    end
+
+    %% ── Student associations ──
+    Student --- UC1
+    Student --- UC2
+    Student --- UC3
+    Student --- UC4
+    Student --- UC5
+
+    %% ── Faculty associations ──
+    Faculty --- UC1
+    Faculty --- UC2
+    Faculty --- UC3
+    Faculty --- UC4
+    Faculty --- UC5
+    Faculty --- UC11
+
+    %% ── Admin associations ──
+    Admin --- UC1
+    Admin --- UC6
+    Admin --- UC7
+    Admin --- UC8
+
+    %% ── System associations ──
+    Sys --- UC9
+    Sys --- UC10
+    Sys --- UC12

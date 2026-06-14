@@ -1,0 +1,46 @@
+graph TD
+    subgraph "Client Tier (Frontend)"
+        ReactApp["React.js SPA (Tailwind CSS)"]
+        Axios["Axios HTTP Client"]
+    end
+
+    subgraph "Application Tier (Backend)"
+        FlaskAPI["Flask REST API"]
+        JWT["Flask-JWT-Extended (Auth)"]
+        AuthRoute["/api/auth (User Auth)"]
+        RoomsRoute["/api/rooms (Rooms & Availability)"]
+        BookingsRoute["/api/bookings (Booking Engine)"]
+        AdminRoute["/api/admin (Admin Panel)"]
+    end
+
+    subgraph "Data Tier (Database)"
+        SQLAlchemy["SQLAlchemy ORM"]
+        SQLite["SQLite / MySQL Database"]
+    end
+
+    subgraph "External Integrations"
+        GoogleSheets["University Timetable (Google Sheets)"]
+    end
+
+    %% Client to App
+    ReactApp -->|User Actions| Axios
+    Axios -->|JSON/REST| FlaskAPI
+
+    %% App routing
+    FlaskAPI --> JWT
+    FlaskAPI --> AuthRoute
+    FlaskAPI --> RoomsRoute
+    FlaskAPI --> BookingsRoute
+    FlaskAPI --> AdminRoute
+
+    %% App to Data
+    AuthRoute --> SQLAlchemy
+    RoomsRoute --> SQLAlchemy
+    BookingsRoute --> SQLAlchemy
+    AdminRoute --> SQLAlchemy
+    
+    SQLAlchemy -->|Read/Write Data| SQLite
+
+    %% External service synchronization
+    RoomsRoute -.->|Fetch free slots| GoogleSheets
+    BookingsRoute -.->|Validate timetable conflicts| GoogleSheets

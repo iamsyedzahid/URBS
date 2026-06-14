@@ -1,0 +1,31 @@
+sequenceDiagram
+    actor User
+    participant React as React (BookingForm)
+    participant Auth as AuthContext
+    participant Flask as Flask API
+    participant JWT as JWT Middleware
+    participant CC as ConflictChecker
+    participant DB as Database
+
+    User->>React: Fill form and click Submit
+    React->>Auth: getToken()
+    Auth-->>React: JWT token
+    React->>Flask: POST /api/bookings + Bearer token
+    Flask->>JWT: Verify token signature & expiry
+    JWT-->>Flask: user_id, role extracted
+
+    Flask->>CC: checkConflict(room_id, date, start, end)
+    CC->>DB: SELECT bookings WHERE overlap condition
+    alt Conflict found
+        DB-->>CC: Returns existing booking
+        CC-->>Flask: Conflict detected
+        Flask-->>React: HTTP 409 - Room already booked
+        React-->>User: Show conflict warning
+    else No conflict
+        DB-->>CC: Empty result
+        CC-->>Flask: Slot is free
+        Flask->>DB: INSERT booking (status=pending)
+        DB-->>Flask: booking_id returned
+        Flask-->>React: HTTP 201 - Booking created
+        React-->>User: Success message, redirect to /my-bookings
+    end

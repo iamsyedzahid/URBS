@@ -1,0 +1,36 @@
+erDiagram
+    %% Entity Definitions
+    USER {
+        int user_id PK
+        string full_name
+        string email UK "Must be unique university email"
+        string password_hash
+        string role "ENUM: Student, Faculty, Admin"
+        datetime created_at
+    }
+
+    ROOM {
+        int room_id PK
+        string room_number UK
+        string room_type "e.g., Lab, Lecture Hall, Meeting"
+        int capacity
+        boolean is_active "Allows soft deletion"
+    }
+
+    BOOKING {
+        int booking_id PK
+        int user_id FK
+        int room_id FK
+        date booking_date
+        time start_time
+        time end_time
+        string purpose
+        string status "ENUM: Pending, Approved, Rejected"
+        string admin_remarks "Nullable, used if rejected"
+        datetime created_at
+    }
+
+    %% Relationships
+    USER ||--o{ BOOKING : "submits"
+    ROOM ||--o{ BOOKING : "is reserved via"
+    USER ||--o{ BOOKING : "reviews/approves (Admin only)"

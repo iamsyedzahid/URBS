@@ -1,0 +1,154 @@
+classDiagram
+    class User {
+        <<abstract>>
+        -int userId
+        -String name
+        -String email
+        -String password
+        -UserRole role
+        +login() bool
+        +logout() void
+        +register() void
+    }
+
+    class Student {
+        -String studentId
+        -String department
+        -int semester
+        +searchRoom() List
+        +submitRequest() void
+        +cancelBooking() void
+    }
+
+    class Faculty {
+        -String facultyId
+        -String designation
+        -bool hasPriority
+        +searchRoom() List
+        +submitRequest() void
+        +usePriorityAccess() void
+    }
+
+    class Admin {
+        -String adminId
+        -List permissions
+        +approveRequest() void
+        +rejectRequest() void
+        +manageRooms() void
+        +monitorUtilization() void
+    }
+
+    class Room {
+        -int roomId
+        -String roomNumber
+        -int capacity
+        -RoomType type
+        -String location
+        -bool isAvailable
+        +checkAvailability() bool
+        +lockSlot() void
+        +releaseSlot() void
+    }
+
+    class BookingRequest {
+        -int requestId
+        -DateTime requestDate
+        -DateTime startTime
+        -DateTime endTime
+        -String purpose
+        -RequestStatus status
+        +submit() void
+        +cancel() void
+        +getStatus() RequestStatus
+        +updateStatus() void
+    }
+
+    class Reservation {
+        -int reservationId
+        -DateTime confirmedAt
+        -DateTime startTime
+        -DateTime endTime
+        -bool isCancelled
+        +finalize() void
+        +cancel() void
+        +getDetails() String
+        +store() void
+    }
+
+    class Notification {
+        -int notifId
+        -String message
+        -DateTime sentAt
+        -NotifType type
+        -bool isRead
+        +send() void
+        +markRead() void
+        +getStatus() String
+    }
+
+    class ConflictChecker {
+        <<service>>
+        -List reservations
+        +checkConflict() bool
+        +getConflicts() List
+        +isSlotFree() bool
+        +enforcePolicy() void
+        +validate() bool
+    }
+
+    class BookingHistory {
+        -List~Reservation~ records
+        -int userId
+        +getHistory() List
+        +addRecord() void
+        +removeRecord() void
+        +filter() List
+    }
+
+    class UserRole {
+        <<enumeration>>
+        STUDENT
+        FACULTY
+        ADMIN
+    }
+
+    class RequestStatus {
+        <<enumeration>>
+        PENDING
+        APPROVED
+        REJECTED
+        CANCELLED
+    }
+
+    class RoomType {
+        <<enumeration>>
+        LECTURE_HALL
+        LAB
+        SEMINAR_ROOM
+        CONFERENCE_ROOM
+    }
+
+    class NotifType {
+        <<enumeration>>
+        APPROVAL
+        REJECTION
+        CANCELLATION
+    }
+
+    User <|-- Student
+    User <|-- Faculty
+    User <|-- Admin
+    Student "1" --> "1..*" BookingRequest : submits
+    Faculty "1" --> "1..*" BookingRequest : submits
+    Admin ..> BookingRequest : reviews
+    BookingRequest "*" --> "1" Room : reserves
+    BookingRequest "1" --> "1" Reservation : creates
+    BookingRequest ..> ConflictChecker : uses
+    Reservation "*" o--> "1" BookingHistory : stored in
+    Reservation ..> Notification : triggers
+    ConflictChecker --> Room : checks
+    BookingHistory ..> User : belongs to
+    Room ..> RoomType
+    User ..> UserRole
+    BookingRequest ..> RequestStatus
+    Notification ..> NotifType

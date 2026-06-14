@@ -1,0 +1,19 @@
+graph TD
+    subgraph Client["Client Machine (Browser)"]
+        Browser[Web Browser\nChrome / Firefox / Edge]
+    end
+
+    subgraph DevServer["Developer Machine (localhost)"]
+        React[React Dev Server\nport 3000]
+        Flask[Flask App Server\nport 5000]
+        SQLite[(SQLite Database\nurbs.db)]
+    end
+
+    subgraph External["External — Google"]
+        Sheets[Google Sheets\nxlsx Export Endpoint\nHTTPS port 443]
+    end
+
+    Browser -->|HTTP requests\nport 3000| React
+    React -->|API calls JSON\nport 5000| Flask
+    Flask -->|SQLAlchemy ORM\nSQL queries| SQLite
+    Flask -->|HTTP GET xlsx\non availability request| Sheets

@@ -1,0 +1,99 @@
+flowchart TD
+    Start((Start))
+    End(( End ))
+
+    %% ── SWIMLANE: Student / Faculty ──
+    subgraph User ["Student / Faculty"]
+        direction TB
+        Login[Enter credentials]
+        ShowLoginError[Show login error]
+        BrowseRooms[Browse and filter rooms]
+        SelectSubmit[Select room and submit request]
+        ShowConflict[Show conflict error]
+        RetryDecision{Retry search?}
+        ViewPending[View 'Pending' status]
+        ViewFinalStatus[View updated booking status]
+        CancelDecision{Cancel booking?}
+        Logout[Logout]
+    end
+
+    %% ── SWIMLANE: System ──
+    subgraph System ["System"]
+        direction TB
+        AuthCheck{Credentials valid?}
+        ConflictCheck{Conflict detected?}
+        LockSlot[Lock time slot]
+        NotifyAdmin[Notify admin of pending request]
+        ReleaseSlotReject[Release locked slot]
+        FinalizeRecord[Finalize reservation in database]
+        UpdateStatusJoin[ ]
+        SendNotification[Send status notification to user]
+        ReleaseSlotCancel[Release slot and update record]
+        NotifyCancel[Notify cancellation]
+    end
+
+    %% ── SWIMLANE: Admin ──
+    subgraph Admin ["Admin"]
+        direction TB
+        ReviewRequest[Review pending request]
+        ApproveDecision{Approve request?}
+        EnterRemarks[Enter rejection remarks]
+    end
+
+    %% ── FLOW ──
+    Start --> Login
+    Login --> AuthCheck
+
+    AuthCheck -->|Invalid| ShowLoginError
+    ShowLoginError --> Login
+
+    AuthCheck -->|Valid| BrowseRooms
+    BrowseRooms --> SelectSubmit
+    SelectSubmit --> ConflictCheck
+
+    ConflictCheck -->|Yes| ShowConflict
+    ShowConflict --> RetryDecision
+    RetryDecision -->|Yes| BrowseRooms
+    RetryDecision -->|No| Logout
+
+    ConflictCheck -->|No| LockSlot
+    LockSlot --> NotifyAdmin
+    NotifyAdmin --> ViewPending
+    NotifyAdmin --> ReviewRequest
+
+    ReviewRequest --> ApproveDecision
+
+    ApproveDecision -->|No| EnterRemarks
+    EnterRemarks --> ReleaseSlotReject
+    ReleaseSlotReject --> UpdateStatusJoin
+
+    ApproveDecision -->|Yes| FinalizeRecord
+    FinalizeRecord --> UpdateStatusJoin
+
+    UpdateStatusJoin --> SendNotification
+    SendNotification --> ViewFinalStatus
+
+    ViewFinalStatus --> CancelDecision
+    CancelDecision -->|Yes| ReleaseSlotCancel
+    ReleaseSlotCancel --> NotifyCancel
+    NotifyCancel --> Logout
+
+    CancelDecision -->|No| Logout
+    Logout --> End
+
+    %% ── STYLING ──
+    classDef startEnd fill:#333,stroke:#333,color:#fff,stroke-width:2px
+    classDef decision fill:#fce4ec,stroke:#c62828,stroke-width:1.5px
+    classDef userAction fill:#ede7f6,stroke:#5e35b1,stroke-width:1.5px
+    classDef sysAction fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px
+    classDef adminAction fill:#e0f2f1,stroke:#00695c,stroke-width:1.5px
+    classDef errorNode fill:#ffebee,stroke:#b71c1c,stroke-width:1.5px
+    classDef joinNode fill:#ccc,stroke:#999,stroke-width:1px,color:#ccc
+
+    class Start,End startEnd
+    class AuthCheck,ConflictCheck,RetryDecision,ApproveDecision,CancelDecision decision
+    class Login,BrowseRooms,SelectSubmit,ViewPending,ViewFinalStatus,Logout userAction
+    class ShowLoginError,ShowConflict errorNode
+    class LockSlot,NotifyAdmin,ReleaseSlotReject,FinalizeRecord,UpdateStatusJoin,SendNotification,ReleaseSlotCancel,NotifyCancel sysAction
+    class ReviewRequest,EnterRemarks adminAction
+    class UpdateStatusJoin joinNode
